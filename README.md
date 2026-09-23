@@ -1,6 +1,10 @@
 # "Basic" Input Config for ExoPlaSim (BICEPS)
 ![BICEPS Icon](data/images/BICEPS.png "BICEPS Icon")
 A "basic" input config GUI for the purposes of creating an [ExoPlaSim](https://github.com/alphaparrot/ExoPlaSim) input file. This is the successor of [EPS-IC](https://github.com/OstimeusAlex/ExoPlaSim-InCon/).
+
+## Preview
+[](data/images/Preview.png "A preview of what one will see upon opening the BICEPS.py file.")
+
 ## Features
 - [x] Easy-to-use layout, sorted into categorised tabs.
 - [x] Image->SRA file converter for easy geographic implementation.
