@@ -3,7 +3,7 @@
 A "basic" input config GUI for the purposes of creating an [ExoPlaSim](https://github.com/alphaparrot/ExoPlaSim) input file. This is the successor of [EPS-IC](https://github.com/OstimeusAlex/ExoPlaSim-InCon/).
 
 ## Preview
-<img src="https://github.com/OstimeusAlex/BICEPS/blob/main/data/images/Preview.png" width="48">
+<img src="https://github.com/OstimeusAlex/BICEPS/blob/main/data/images/Preview.png" width="480">
 
 ## Features
 - [x] Easy-to-use layout, sorted into categorised tabs.
