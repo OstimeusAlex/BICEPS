@@ -1,4 +1,4 @@
-# BICEPS
+# "Basic" Input Config for ExoPlaSim (BICEPS)
 ![BICEPS Icon](BICEPS.png "BICEPS Icon")
 A "basic" input config GUI for the purposes of creating an [ExoPlaSim](https://github.com/alphaparrot/ExoPlaSim) input file. This is the successor of [EPS-IC](https://github.com/OstimeusAlex/ExoPlaSim-InCon/).
 ## Features
