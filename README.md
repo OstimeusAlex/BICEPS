@@ -1,5 +1,3 @@
 # BICEPS
-<p align="center">
-  <img src="https://github.com/OstimeusAlex/BICEPS/BICEPS.png" alt="Icon for BICEPS"/>
-</p>
+![BICEPS Icon](BICEPS.png "BICEPS Icon")
 A "basic" input config GUI for the purposes of creating an ExoPlaSim input file.
