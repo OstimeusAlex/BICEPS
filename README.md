@@ -12,7 +12,7 @@ _Preview of what one should see upon opening the BICEPS.py file. Screenshot uses
 - [x] Image->SRA file converter for easy geographic implementation.
 - [x] Import/Export Preset Files, saving the hassle of redoing settings.
 - [x] Helpful tips via clicking on coloured-text.
-- [x] Use of PYSimpleGUI themes (>150 Themes to choose from!).
+- [x] Use of PYSimpleGUI themes ([>150 Themes](https://user-images.githubusercontent.com/46163555/202543904-e7fefe99-2c02-4e58-9a97-ef0724aa4d8a.png) to choose from!).
 - [x] Works on multiple platforms (Has been tested on Linux and should work on Windows, needs testing on Mac).
   - _NOTE: ExoPlaSim as of now still operates in a Linux-based environment, this just makes it easier for those less skilled in programming._
 ## Future Ideas
