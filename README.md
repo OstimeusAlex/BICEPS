@@ -5,7 +5,7 @@ A "basic" input config GUI for the purposes of creating an [ExoPlaSim](https://g
 ## Preview
 <img src="https://github.com/OstimeusAlex/BICEPS/blob/main/data/images/Preview.png" alt="Preview of what one should see upon opening the BICEPS.py file." width="480">
 
-_Preview of what one should see upon opening the BICEPS.py file. Screenshot uses the 'Dark Teal 10' theme._
+_Preview of what one should see upon opening the BICEPS.py file, using the 'Dark Teal 10' theme._
 
 ## Features
 - [x] Easy-to-use layout, sorted into categorised tabs.
