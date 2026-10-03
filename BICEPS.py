@@ -285,7 +285,7 @@ def save_file(savefile):
     if values['-TOG_MAX_SNW-'] != False: ot.maxsnow = 'maxsnow='+values['-MAX_SNW-']+','
     if values['-TOG_OCN_ALB-'] != False: ot.oceanalb = 'oceanalbedo='+values['-OCN_ALB-']+','
     if values['-TOG_OCN_MLD-'] != False: ot.mixedlyr = 'mldepth='+values['-OCN_MLD-']+','
-    if values['-TOG_IMG_SRA'] != False:
+    if values['-TOG_IMG_SRA-'] != False:
         landmap = 'landmap="SRA/'+Pth.name(values['-HGHTMP_LAND_SRA-'])+'",'
         topomap = 'topomap="SRA/'+Pth.name(values['-HGHTMP_TOPO_SRA-'])+'",'
     if values['-TOG_PLT_AQA-'] != False:
