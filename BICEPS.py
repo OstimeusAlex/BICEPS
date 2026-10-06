@@ -1,5 +1,5 @@
 from os import system
-from os import name
+from os import name as os_name
 from os import path
 from configparser import ConfigParser
 from pathlib import Path as Pth
@@ -173,6 +173,10 @@ class ot():
     cleantext = ''
 
 #BICEPS Functions
+def file_name(myPath):
+    for myPath in Pth.cwd().iterdir():
+        return myPath.name
+
 def system_check():
     #system('cls' if name == 'nt' else 'clear')
     sg.popup_auto_close("Running Compatability Check...", title="Running Check...")
@@ -233,8 +237,8 @@ def save_sra():
             else:
                 sg.Print('No Image Found', text_color='dark red')
         else:
-            lndsrafle = Pth.name(values['-HGHTMP_LAND_SRA-'])
-            tposrafle = Pth.name(values['-HGHTMP_TOPO_SRA-'])
+            lndsrafle = file_name(values['-HGHTMP_LAND_SRA-'])
+            tposrafle = file_name(values['-HGHTMP_TOPO_SRA-'])
             sra_path = Pth.cwd()+'/SRA'
             lnd_path = sra_path+"/"+lndsrafle
             tpo_path = sra_path+"/"+tposrafle
@@ -286,8 +290,8 @@ def save_file(savefile):
     if values['-TOG_OCN_ALB-'] != False: ot.oceanalb = 'oceanalbedo='+values['-OCN_ALB-']+','
     if values['-TOG_OCN_MLD-'] != False: ot.mixedlyr = 'mldepth='+values['-OCN_MLD-']+','
     if values['-TOG_IMG_SRA-'] != False:
-        landmap = 'landmap="SRA/'+Pth.name(values['-HGHTMP_LAND_SRA-'])+'",'
-        topomap = 'topomap="SRA/'+Pth.name(values['-HGHTMP_TOPO_SRA-'])+'",'
+        landmap = 'landmap="SRA/'+file_name(values['-HGHTMP_LAND_SRA-'])+'",'
+        topomap = 'topomap="SRA/'+file_name(values['-HGHTMP_TOPO_SRA-'])+'",'
     if values['-TOG_PLT_AQA-'] != False:
         ot.aquaplanet = 'aquaplanet=True,'
         ot.landmap = ''
@@ -1017,7 +1021,7 @@ window = sg.Window('Basic Input Config for ExoPlaSim (BICEPS) v1.0.0', layout, f
 while True: #While Open
     event, values = window.read()
     if (event == sg.WINDOW_CLOSE_ATTEMPTED_EVENT or event == 'Exit') and sg.popup_yes_no('Are you sure?') == 'Yes':
-        system('cls' if name == 'nt' else 'clear')
+        system('cls' if os_name == 'nt' else 'clear')
         break
 
 #Non-Exit Events
