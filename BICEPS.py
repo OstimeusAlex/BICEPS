@@ -250,8 +250,7 @@ def save_sra():
                 pass
             shutil.copyfile(values['-HGHTMP_LAND_SRA-'], lnd_path)
             shutil.copyfile(values['-HGHTMP_TOPO_SRA-'], tpo_path)
-            try:
-                os.makedirs(Pth.cwd())
+            os.makedirs(Pth.cwd())
 
 def open_heightmap(heightmapimg):
     window['-HGHTMP_IMG_FLE-'].update(heightmapimg)
