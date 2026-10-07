@@ -14,6 +14,7 @@ tposrafle = ''
 sra_path = ''
 lnd_path = ''
 tpo_path = ''
+heightmapimg = ''
 
 #Toggle Functions
 def wiget_enable(param):
