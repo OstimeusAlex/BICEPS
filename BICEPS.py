@@ -249,6 +249,8 @@ def save_sra():
                 pass
             shutil.copyfile(values['-HGHTMP_LAND_SRA-'], lnd_path)
             shutil.copyfile(values['-HGHTMP_TOPO_SRA-'], tpo_path)
+            try:
+                os.makedirs(Pth.cwd())
 
 def open_heightmap(heightmapimg):
     window['-HGHTMP_IMG_FLE-'].update(heightmapimg)
@@ -1023,7 +1025,7 @@ layout = [[sg.Menu(menu_def, tearoff=False, font='Verdana 14', key='-MENU-')],
                          sg.Tab("Geography", Terrain_layout),
                          sg.Tab("Atmosphere+", AtmospherePlus_layout)]], font='Verdana 14 bold underline')]]
 
-window = sg.Window('Basic Input Config for ExoPlaSim (BICEPS) v1.0.5', layout, font=font, enable_close_attempted_event=True, resizable=False, icon =str(Pth.cwd())+"/data/images/BICEPS.ico")
+window = sg.Window('Basic Input Config for ExoPlaSim (BICEPS) v1.0.7', layout, font=font, enable_close_attempted_event=True, resizable=False, icon =str(Pth.cwd())+"/data/images/BICEPS.ico")
 while True: #While Open
     event, values = window.read()
     if (event == sg.WINDOW_CLOSE_ATTEMPTED_EVENT or event == 'Exit') and sg.popup_yes_no('Are you sure?') == 'Yes':
