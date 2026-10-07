@@ -175,8 +175,8 @@ class ot():
 
 #BICEPS Functions
 def file_name(myPath):
-    for myPath in Pth.cwd().iterdir():
-        return myPath.name
+    p = Pth(myPath)
+    return p.name
 
 def system_check():
     #system('cls' if name == 'nt' else 'clear')
@@ -294,8 +294,10 @@ def save_file(savefile):
     if values['-TOG_OCN_ALB-'] != False: ot.oceanalb = 'oceanalbedo='+values['-OCN_ALB-']+','
     if values['-TOG_OCN_MLD-'] != False: ot.mixedlyr = 'mldepth='+values['-OCN_MLD-']+','
     if values['-TOG_IMG_SRA-'] != False:
-        landmap = 'landmap="SRA/'+file_name(values['-HGHTMP_LAND_SRA-'])+'",'
-        topomap = 'topomap="SRA/'+file_name(values['-HGHTMP_TOPO_SRA-'])+'",'
+        ot.landmap = 'landmap="SRA/'+file_name(values['-HGHTMP_LAND_SRA-'])+'",'
+        ot.topomap = 'topomap="SRA/'+file_name(values['-HGHTMP_TOPO_SRA-'])+'",'
+        print(ot.landmap)
+        print(ot.topomap)
     if values['-TOG_PLT_AQA-'] != False:
         ot.aquaplanet = 'aquaplanet=True,'
         ot.landmap = ''
@@ -1025,7 +1027,7 @@ layout = [[sg.Menu(menu_def, tearoff=False, font='Verdana 14', key='-MENU-')],
                          sg.Tab("Geography", Terrain_layout),
                          sg.Tab("Atmosphere+", AtmospherePlus_layout)]], font='Verdana 14 bold underline')]]
 
-window = sg.Window('Basic Input Config for ExoPlaSim (BICEPS) v1.0.7', layout, font=font, enable_close_attempted_event=True, resizable=False, icon =str(Pth.cwd())+"/data/images/BICEPS.ico")
+window = sg.Window('Basic Input Config for ExoPlaSim (BICEPS) v1.0.10', layout, font=font, enable_close_attempted_event=True, resizable=False, icon =str(Pth.cwd())+"/data/images/BICEPS.ico")
 while True: #While Open
     event, values = window.read()
     if (event == sg.WINDOW_CLOSE_ATTEMPTED_EVENT or event == 'Exit') and sg.popup_yes_no('Are you sure?') == 'Yes':
