@@ -326,20 +326,20 @@ def save_file(savefile):
     if values['-PHY_SNPSHTS-'] != '0': ot.snpshts = 'snapshots='+values['-PHY_SNPSHTS-']+','
     if values['-PHY_FLTR-'] == 'Cesaro':
         if values['-PHY_FLTR_APP-'] == 'None': ot.physicstext = ''
-        if values['-PHY_FLTR_APP-'] == 'GP': ot.physicstext = ",physicsfilter='gp|cesaro',\n"
-        if values['-PHY_FLTR_APP-'] == 'SP': ot.physicstext = ",physicsfilter='cesaro|sp',\n"
-        if values['-PHY_FLTR_APP-'] == 'GP+SP': ot.physicstext = ",physicsfilter='gp|cesaro|sp',\n"
+        if values['-PHY_FLTR_APP-'] == 'GP': ot.physicstext = ",physicsfilter='gp|cesaro'"
+        if values['-PHY_FLTR_APP-'] == 'SP': ot.physicstext = ",physicsfilter='cesaro|sp'"
+        if values['-PHY_FLTR_APP-'] == 'GP+SP': ot.physicstext = ",physicsfilter='gp|cesaro|sp'"
     elif values['-PHY_FLTR-'] == 'Exp':
         if values['-PHY_FLTR_APP-'] == 'None': ot.physicstext = ''
-        if values['-PHY_FLTR_APP-'] == 'GP': ot.physicstext = ",physicsfilter='gp|exp',\n"
-        if values['-PHY_FLTR_APP-'] == 'SP': ot.physicstext = ",physicsfilter='exp|sp',\n"
-        if values['-PHY_FLTR_APP-'] == 'GP+SP': ot.physicstext = ",physicsfilter='gp|exp|sp',\n"
+        if values['-PHY_FLTR_APP-'] == 'GP': ot.physicstext = ",physicsfilter='gp|exp'"
+        if values['-PHY_FLTR_APP-'] == 'SP': ot.physicstext = ",physicsfilter='exp|sp'"
+        if values['-PHY_FLTR_APP-'] == 'GP+SP': ot.physicstext = ",physicsfilter='gp|exp|sp'"
     elif values['-PHY_FLTR-'] == 'Lh':
         if values['-PHY_FLTR_APP-'] == 'None': ot.physicstext = ''
-        if values['-PHY_FLTR_APP-'] == 'GP': ot.physicstext = ",physicsfilter='gp|lh',\n"
-        if values['-PHY_FLTR_APP-'] == 'SP': ot.physicstext = ",physicsfilter='lh|sp',\n"
-        if values['-PHY_FLTR_APP-'] == 'GP+SP': ot.physicstext = ",physicsfilter='gp|lh|sp',\n"
-    if values['-TOG_STRM_CLIM-'] != False: ot.stormstext = ",\n				stormclim=True"
+        if values['-PHY_FLTR_APP-'] == 'GP': ot.physicstext = ",physicsfilter='gp|lh'"
+        if values['-PHY_FLTR_APP-'] == 'SP': ot.physicstext = ",physicsfilter='lh|sp'"
+        if values['-PHY_FLTR_APP-'] == 'GP+SP': ot.physicstext = ",physicsfilter='gp|lh|sp'"
+    if values['-TOG_STRM_CLIM-'] != False: ot.stormstext = "				stormclim=True,"
     if values['-TOG_HRCNE-'] != False: ot.stmplus = ", 'NKTRIGGER': 1"
     if values['-STM_MIN_TEMP-'] != '298.15': ot.stmplus = ot.stmplus+", 'MINSURFTEMP': "+values['-STM_MIN_TEMP-']
     if values['-STM_MAX_TEMP-'] != '373.15': ot.stmplus = ot.stmplus+", 'MAXSURFTEMP': "+values['-STM_MAX_TEMP-']
@@ -354,8 +354,12 @@ def save_file(savefile):
     if values['-STM_MAX_TMESTPS-'] != '1024': ot.stmplus = ot.stmplus+", 'MAXSTORMLEN': "+values['-STM_MAX_TMESTPS-']
     if values['-STM_VRMI-'] != '0.577': ot.stmplus = ot.stmplus+", 'VRMTHRESH': "+values['-STM_VRMI-']
     if values['-STM_LAV-'] != '0.000012': ot.stmplus = ot.stmplus+", 'LAVTHRESH': "+values['-STM_LAV-']
-    if values['-TOG_STM_CPTRE-'] != False: ot.stormstext = ot.stormstext+",stormcapture={'toggle': 1"+ot.stmplus+"}"
-    if values['-TOG_HGH_CDNCE-'] != False: ot.stormstext = ot.stormstext+",highcadence={'toggle': 1, 'start': "+values['-HGH_CDNCE_STRT-']+", 'end': "+values['-HGH_CDNCE_END-']+", 'interval': "+values['-HGH_CDNCE_INTRVL-']+"}"
+    if values['-TOG_STM_CPTRE-'] != False: ot.stormstext = ot.stormstext+"stormcapture={'toggle': 1"+ot.stmplus+"}"
+    if values['-TOG_HGH_CDNCE-'] != False:
+        if values['-TOG_STM_CPTRE-'] != False:
+            ot.stormstext = ot.stormstext+",highcadence={'toggle': 1, 'start': "+values['-HGH_CDNCE_STRT-']+", 'end': "+values['-HGH_CDNCE_END-']+", 'interval': "+values['-HGH_CDNCE_INTRVL-']+"}"
+        else:
+            ot.stormstext = ot.stormstext+"highcadence={'toggle': 1, 'start': "+values['-HGH_CDNCE_STRT-']+", 'end': "+values['-HGH_CDNCE_END-']+", 'interval': "+values['-HGH_CDNCE_INTRVL-']+"}"
     if values['-TOG_CRSH_IF_BRKN-'] != False: ot.crashtext = ',crashifbroken=True'
     if values['-TOG_CLN-'] != False: ot.cleantext = ',clean=True'
     if values['-TOG_RUN_TO_BLNCE-'] != False: ot.runtext = values['-SIM_PRJCT_NME-']+'.runtobalance(threshold='+values['-PHY_THRSHLD-']+',baseline='+values['-PHY_BSELNE-']+',minyears='+values['-PHY_MIN_YR-']+',maxyears='+values['-PHY_MAX_YR-']+ot.crashtext+ot.cleantext+')\n'+values['-SIM_PRJCT_NME-']+'.run(years=10)\n'
@@ -379,7 +383,7 @@ def save_file(savefile):
         format_ppressure = "				"+ot.ppressure
     format_glacier = ot.glacial
     format_aerosol = ot.arsls
-    format_timekeep = ot.tmekeep+ot.snpshts+"otherargs={'NSTPW@plasim_namelist':'"+values['-PHY_NSTPW-']+"'}"+ot.physicstext
+    format_timekeep = ot.tmekeep+ot.snpshts+"otherargs={'NSTPW@plasim_namelist':'"+values['-PHY_NSTPW-']+"'}"+ot.physicstext+',\n'
     format_storms = ot.stormstext+')\n'
     format_export = values['-SIM_PRJCT_NME-']+'.exportcfg()\n'
     format_run = ot.runtext
