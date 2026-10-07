@@ -996,7 +996,7 @@ Weather_input     = [[sg.Text('', font='Verdana 13')],
                      [sg.Input(default_text='320', key='-HGH_CDNCE_STRT-', s=8, disabled=True)],
                      [sg.Input(default_text='576', key='-HGH_CDNCE_END-', s=8, disabled=True)],
                      [sg.Input(default_text='4', key='-HGH_CDNCE_INTRVL-', s=8, disabled=True)],
-                     [sg.Checkbox('', default=False, disabled=True, enable_events=True, key='-TOG_STM_CPTRE-')],
+                     [sg.Checkbox('', default=False, enable_events=True, key='-TOG_STM_CPTRE-')],
                      [sg.Checkbox('', default=False, disabled=True, enable_events=True, key='-TOG_HRCNE-')],
                      [sg.Input(default_text='298.15', key='-STM_MIN_TEMP-', s=8, disabled=True)],
                      [sg.Input(default_text='373.15', key='-STM_MAX_TEMP-', s=8, disabled=True)],
@@ -1048,7 +1048,7 @@ while True: #While Open
             save_file(export_py_path)
         case 'SRA files (.sra)': save_sra()
         case '-TOG_RSTRT_FLE-': rstrtfletoggle()
-        case '-TOG_STRM_CLIM-': stmtoggle()
+        #case '-TOG_STRM_CLIM-': stmtoggle()
         case '-TOG_HGH_CDNCE-': hghcdncetoggle()
         case '-TOG_STM_CPTRE-': stmcptretoggle()
         case '-TOG_RUN_TO_BLNCE-': baltoggle ()
