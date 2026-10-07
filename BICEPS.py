@@ -26,9 +26,9 @@ def wiget_disable(param):
 def rstrtfletoggle():  #Restart File
     if values['-TOG_RSTRT_FLE-'] == True: wiget_enable(['-PHY_RSTRT_FLE-','-RSTRT_FLE_OPN-'])
     else: wiget_disable(['-PHY_RSTRT_FLE-','-RSTRT_FLE_OPN-'])
-def stmtoggle():       #Storm
-    if values['-TOG_STRM_CLIM-'] == True: wiget_enable(['-TOG_HGH_CDNCE-'])
-    else: wiget_disable(['-TOG_HGH_CDNCE-'])
+#def stmtoggle():       #Storm
+    #if values['-TOG_STRM_CLIM-'] == True: wiget_enable(['-TOG_HGH_CDNCE-'])
+    #else: wiget_disable(['-TOG_HGH_CDNCE-'])
 def hghcdncetoggle():  #High Cadence
     if values['-TOG_HGH_CDNCE-'] == True: wiget_enable(['-HGH_CDNCE_STRT-','-HGH_CDNCE_END-','-HGH_CDNCE_INTRVL-','-TOG_STM_CPTRE-'])
     else: wiget_disable(['-HGH_CDNCE_STRT-','-HGH_CDNCE_END-','-HGH_CDNCE_INTRVL-','-TOG_STM_CPTRE-'])
@@ -272,7 +272,7 @@ def save_file(savefile):
     if values['-OBT_OBLTY-'] != '23.441': ot.oblqty = 'obliquity='+values['OBT_OBLTY-']+','
     if values['-OBT_LOP-'] != '102.7': ot.lngoperi = 'lonvernaleq='+values['-OBT_LOP-']+','
     if values['-TOG_FXD_OBT-'] != False: ot.fxdobt = 'fixedorbit=True,'
-    if values['-TOG_KPLR_OBT-'] != False: ot.kplrobt = 'keplerian=True, meananomaly0='+values['-OBT_MNANMLY-']+','
+    if values['-TOG_KPLR_OBT-'] != False: ot.kplrobt = 'keplerian=True,meananomaly0='+values['-OBT_MNANMLY-']+','
     if values['-TOG_TDL_LCK-'] != False: ot.rotprop = '				synchronous=True,substellarlon='+values['-PLNT_SUB_LONG-']+',desync='+values['-PLNT_SUB_DSNC-']+',tlcontrast='+values['-PLNT_TMP_CNST-']+',\n'
     else:
         if values['-PLNT_DAY_LNGH-'] != '1.0': ot.rotprop = '				rotationperiod='+values['-PLNT_DAY_LNGH-']+',\n'
@@ -282,7 +282,9 @@ def save_file(savefile):
     if values['-TOG_SOIL_WET-'] != False: ot.wtsl = 'wetsoil=True,'
     if values['-TOG_SOIL_ALB-'] != False: ot.slalb = 'soilalbedo='+values['-SOIL_ALB-']+','
     if values['-TOG_SOIL_DPTH-'] != False: ot.sldpth = 'soildepth='+values['-SOIL_DPTH-']+','
-    if values['-TOG_SOIL_HCAP-'] != False: ot.slhcap = 'cpsoil='+values['-SOIL_HCAP-']+','
+    if values['-TOG_SOIL_HCAP-'] != False:
+        if values['SOIL_HCAP'] != 2400000:
+            ot.slhcap = 'cpsoil='+values['-SOIL_HCAP-']+','
     if values['-TOG_SOIL_WCAP-'] != False: ot.slwcap = 'soilwatercap='+values['-SOIL_WCAP-']+','
     if values['-TOG_SOIL_SAT-'] != False: ot.slsat = 'soilsaturation='+values['-SOIL_SAT-']+','
     if values['-TOG_SNW_ALB-'] != False: ot.snowalb = 'snowicealbedo='+values['-SNW_ALB-']+','
@@ -312,7 +314,7 @@ def save_file(savefile):
     if values['-TOG_GAS_PR-'] != False and values['-ATM_KR-'] != '0.0': ot.ppressure = ot.ppressure+'pKr='+values['-ATM_KR-']+','
     if values['-TOG_GAS_PR-'] != False and values['-ATM_H2O-'] != '0.0': ot.ppressure = ot.ppressure+'pH2O='+values['-ATM_H2O-']+','
     if values['-TOG_GAS_PR-'] != False and values['-ATM_CO2-'] != '0.0': ot.ppressure = ot.ppressure+'pCO2='+values['-ATM_CO2-']+',\n'
-    if values['-TOG_GLCR-'] != False: ot.glacial = "				  glaciers={'toggle': True, 'mindepth': "+values['-GLCR_TRSHLD-']+",'initialh': "+values['-GLCR_HGT-']+"},\n"
+    if values['-TOG_GLCR-'] != False: ot.glacial = "				glaciers={'toggle': True, 'mindepth': "+values['-GLCR_TRSHLD-']+",'initialh': "+values['-GLCR_HGT-']+"},\n"
     if values['-TOG_BLK_ATM-'] == 'N2': ot.arsl_blk = '1'
     elif values['-TOG_BLK_ATM-'] == 'H2': ot.arsl_blk = '2'
     else: ot.arsl_blk = '3'
@@ -356,7 +358,7 @@ def save_file(savefile):
     if values['-TOG_HGH_CDNCE-'] != False: ot.stormstext = ot.stormstext+",highcadence={'toggle': 1, 'start': "+values['-HGH_CDNCE_STRT-']+", 'end': "+values['-HGH_CDNCE_END-']+", 'interval': "+values['-HGH_CDNCE_INTRVL-']+"}"
     if values['-TOG_CRSH_IF_BRKN-'] != False: ot.crashtext = ',crashifbroken=True'
     if values['-TOG_CLN-'] != False: ot.cleantext = ',clean=True'
-    if values['-TOG_RUN_TO_BLNCE-'] != False: ot.runtext = values['-SIM_PRJCT_NME-']+'.runtobalance(threshold='+values['-PHY_THRSHLD-']+',baseline='+values['-PHY_BSELNE-']+',maxyears='+values['-PHY_MAX_YR-']+',minyears='+values['-PHY_MIN_YR-']+ot.crashtext+ot.cleantext+')\n'+values['-SIM_PRJCT_NME-']+'.run(years=10)\n'
+    if values['-TOG_RUN_TO_BLNCE-'] != False: ot.runtext = values['-SIM_PRJCT_NME-']+'.runtobalance(threshold='+values['-PHY_THRSHLD-']+',baseline='+values['-PHY_BSELNE-']+',minyears='+values['-PHY_MIN_YR-']+',maxyears='+values['-PHY_MAX_YR-']+ot.crashtext+ot.cleantext+')\n'+values['-SIM_PRJCT_NME-']+'.run(years=10)\n'
     elif values['-TOG_RUN_TO_BLNCE-'] == False: ot.runtext = values['-SIM_PRJCT_NME-']+'.run(years='+values['-PHY_RUNTME-']+')\n'
 
     #Formatting
@@ -878,18 +880,18 @@ Terrain_text      = [[sg.Text('Soil Properties', font='Verdana 13 underline')],
                      [sg.Text('Threshold (m):', tooltip=hT("helpgrthrshld"))]]
 Terrain_input     = [[sg.Text('', font='Verdana 13')],
                      [sg.Checkbox('', default=False, enable_events=True, key='-TOG_SOIL_WET-')],
-                     [sg.Input(default_text='0.0', s=5, disabled=True, key='-SOIL_ALB-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SOIL_ALB-')],
-                     [sg.Input(default_text='12.4', s=5, disabled=True, key='-SOIL_DPTH-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SOIL_DPTH-')],
-                     [sg.Input(default_text='2.4', s=5, disabled=True, key='-SOIL_HCAP-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SOIL_HCAP-')],
-                     [sg.Input(default_text='0.5', s=5, disabled=True, key='-SOIL_WCAP-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SOIL_WCAP-')],
-                     [sg.Input(default_text='0.0', s=5, disabled=True, key='-SOIL_SAT-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SOIL_SAT-')],
+                     [sg.Input(default_text='0.0', s=8, disabled=True, key='-SOIL_ALB-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SOIL_ALB-')],
+                     [sg.Input(default_text='12.4', s=8, disabled=True, key='-SOIL_DPTH-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SOIL_DPTH-')],
+                     [sg.Input(default_text='2400000', s=8, disabled=True, key='-SOIL_HCAP-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SOIL_HCAP-')],
+                     [sg.Input(default_text='0.5', s=8, disabled=True, key='-SOIL_WCAP-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SOIL_WCAP-')],
+                     [sg.Input(default_text='0.0', s=8, disabled=True, key='-SOIL_SAT-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SOIL_SAT-')],
                      [sg.Text('')],
                      [sg.Text('', font='Verdana 13')],
-                     [sg.Input(default_text='0.0', s=5, disabled=True, key='-SNW_ALB-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SNW_ALB-')],
-                     [sg.Input(default_text='5.0', s=5, disabled=True, key='-MAX_SNW-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_MAX_SNW-')],
+                     [sg.Input(default_text='0.0', s=8, disabled=True, key='-SNW_ALB-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_SNW_ALB-')],
+                     [sg.Input(default_text='5.0', s=8, disabled=True, key='-MAX_SNW-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_MAX_SNW-')],
                      [sg.Checkbox('', default=True, enable_events=True, key='-TOG_SEA_ICE-')],
-                     [sg.Input(default_text='0.0', s=5, disabled=True, key='-OCN_ALB-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_OCN_ALB-')],
-                     [sg.Input(default_text='50.0', s=5, disabled=True, key='-OCN_MLD-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_OCN_MLD-')],
+                     [sg.Input(default_text='0.0', s=8, disabled=True, key='-OCN_ALB-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_OCN_ALB-')],
+                     [sg.Input(default_text='50.0', s=8, disabled=True, key='-OCN_MLD-'), sg.Checkbox('', default=False, enable_events=True, key='-TOG_OCN_MLD-')],
                      [sg.Combo(['Lambertian', 'uniform', 'ECHAM-3', 'plasim', 'default', 'ECHAM-6'], default_value='ECHAM-3', enable_events=True, key='-TOG_OCN_ZEN-')],
                      [sg.Text('')],
                      [sg.Text('', font='Verdana 8')],
@@ -986,7 +988,7 @@ Weather_text      = [[sg.Text('Storm Properties', font='Verdana 13 underline')],
                      [sg.Text('Low Atm. Vorticity:', tooltip=hT("helplmvthrshld"))]]
 Weather_input     = [[sg.Text('', font='Verdana 13')],
                      [sg.Checkbox('', default=False, enable_events=True, key='-TOG_STRM_CLIM-')],
-                     [sg.Checkbox('', default=False, disabled=True, enable_events=True, key='-TOG_HGH_CDNCE-')],
+                     [sg.Checkbox('', default=False, enable_events=True, key='-TOG_HGH_CDNCE-')],
                      [sg.Input(default_text='320', key='-HGH_CDNCE_STRT-', s=8, disabled=True)],
                      [sg.Input(default_text='576', key='-HGH_CDNCE_END-', s=8, disabled=True)],
                      [sg.Input(default_text='4', key='-HGH_CDNCE_INTRVL-', s=8, disabled=True)],
@@ -1017,7 +1019,7 @@ layout = [[sg.Menu(menu_def, tearoff=False, font='Verdana 14', key='-MENU-')],
                          sg.Tab("Geography", Terrain_layout),
                          sg.Tab("Atmosphere+", AtmospherePlus_layout)]], font='Verdana 14 bold underline')]]
 
-window = sg.Window('Basic Input Config for ExoPlaSim (BICEPS) v1.0.0', layout, font=font, enable_close_attempted_event=True, resizable=False, icon =str(Pth.cwd())+"/data/images/BICEPS.ico")
+window = sg.Window('Basic Input Config for ExoPlaSim (BICEPS) v1.0.5', layout, font=font, enable_close_attempted_event=True, resizable=False, icon =str(Pth.cwd())+"/data/images/BICEPS.ico")
 while True: #While Open
     event, values = window.read()
     if (event == sg.WINDOW_CLOSE_ATTEMPTED_EVENT or event == 'Exit') and sg.popup_yes_no('Are you sure?') == 'Yes':
