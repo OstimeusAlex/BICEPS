@@ -370,7 +370,7 @@ def save_file(savefile):
     elif values['-TOG_RUN_TO_BLNCE-'] == False: ot.runtext = values['-SIM_PRJCT_NME-']+'.run(years='+values['-PHY_RUNTME-']+')\n'
 
     #Formatting
-    format_name = "import exoplasim as exo\n"+values['-SIM_PRJCT_NME-']+' = exo.Model(workdir="'+values['-SIM_PRJCT_NME-']+'",modelname="'+values['-SIM_MDL_NME-']+'",'
+    format_name = "import exoplasim as exo\n"+values['-SIM_PRJCT_NME-']+' = exo.Model(workdir="'+values['-SIM_PRJCT_NME-']+'_workdir",modelname="'+values['-SIM_MDL_NME-']+'",'
     format_model = ot.iniyear+ot.ncpus+ot.presis+ot.resltn+ot.crash+ot.layers+ot.recom+ot.outtype+')\n'
     format_stellar = values['-SIM_PRJCT_NME-']+'.configure('+ot.strtmp+ot.strflx+'\n'
     format_orbit = "				"+ot.yrlngh+ot.ecctrcty+ot.oblqty+ot.lngoperi+ot.fxdobt+ot.kplrobt+'\n'
@@ -698,31 +698,31 @@ def load_ini(filepath):
     window['-STM_MAX_TMESTPS-'].update(strmprm.get('Max Timesteps'))
     window['-STM_VRMI-'].update(strmprm.get('Vent-Reduced Max Intensity'))
     window['-STM_LAV-'].update(strmprm.get('Low Atm. Vorticity'))
-    #rstrtfletoggle()
-    #stmtoggle()
-    #hghcdncetoggle()
-    #stmcptretoggle()
-    #baltoggle ()
-    #keplertoggle()
-    #tidaltoggle()
-    #pressuretoggle()
-    #gascontoggle()
-    #ptoggle()
-    #aquatoggle()
-    #imgsratoggle()
-    #dsrtoggle()
-    #soilalbtoggle()
-    #soildepthtoggle()
-    #capsoiltoggle()
-    #soilwcptoggle()
-    #soilsattoggle()
-    #snowalbtoggle()
-    #mxsnowtoggle()
-    #oceanalbtoggle()
-    #mldepthtoggle()
-    #gtoggle()
-    #vegtoggle()
-    #arsltoggle()
+    rstrtfletoggle()
+    stmtoggle()
+    hghcdncetoggle()
+    stmcptretoggle()
+    baltoggle ()
+    keplertoggle()
+    tidaltoggle()
+    pressuretoggle()
+    gascontoggle()
+    ptoggle()
+    aquatoggle()
+    imgsratoggle()
+    dsrtoggle()
+    soilalbtoggle()
+    soildepthtoggle()
+    capsoiltoggle()
+    soilwcptoggle()
+    soilsattoggle()
+    snowalbtoggle()
+    mxsnowtoggle()
+    oceanalbtoggle()
+    mldepthtoggle()
+    gtoggle()
+    vegtoggle()
+    arsltoggle()
     print('Config parameters loaded!')
 #----------------------------------------------------------------
 #----------------------------------------------------------------
@@ -1027,7 +1027,7 @@ layout = [[sg.Menu(menu_def, tearoff=False, font='Verdana 14', key='-MENU-')],
                          sg.Tab("Geography", Terrain_layout),
                          sg.Tab("Atmosphere+", AtmospherePlus_layout)]], font='Verdana 14 bold underline')]]
 
-window = sg.Window('Basic Input Config for ExoPlaSim (BICEPS) v1.0.11', layout, font=font, enable_close_attempted_event=True, resizable=False, icon =str(Pth.cwd())+"/data/images/BICEPS.ico")
+window = sg.Window('Basic Input Config for ExoPlaSim (BICEPS) v1.0.12', layout, font=font, enable_close_attempted_event=True, resizable=False, icon =str(Pth.cwd())+"/data/images/BICEPS.ico")
 while True: #While Open
     event, values = window.read()
     if (event == sg.WINDOW_CLOSE_ATTEMPTED_EVENT or event == 'Exit') and sg.popup_yes_no('Are you sure?') == 'Yes':
@@ -1049,7 +1049,7 @@ while True: #While Open
             save_ini(export_BICEPS_path)
         case 'EPS File (.py)':
             export_py_path = sg.popup_get_file("Export File", no_window=True, save_as=True, default_extension=".py", file_types=[("Python Files", "*.py")])
-            save_file(export_py_path)
+            if export_py_path != None: save_file(export_py_path)
         case 'SRA files (.sra)': save_sra()
         case '-TOG_RSTRT_FLE-': rstrtfletoggle()
         #case '-TOG_STRM_CLIM-': stmtoggle()
